@@ -1,4 +1,4 @@
-import VueRouter from 'vue-route'
+import VueRouter from 'vue-router'
 import Home from './components/tabbar/Home.vue'
 import Member from './components/tabbar/Member.vue'
 import Shopcar from './components/tabbar/Shopcar.vue'
@@ -11,7 +11,8 @@ var router = new VueRouter({
         {path:'/member',component:Member},
         {path:'/shopcar',component:Shopcar},
         {path:'/search',component:Search}
-    ]
+    ],
+    linkActiveClass:'mui-active'
 })
 
 

@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div class='app_container'>
         <mt-header fixed title="固定在顶部"></mt-header>
         <nav class="mui-bar mui-bar-tab">
-			<router-link class="mui-tab-item mui-active" to='/home'>
+			<router-link class="mui-tab-item" to='/home'>
 				<span class="mui-icon mui-icon-home"></span>
 				<span class="mui-tab-label">首页</span>
 			</router-link>
@@ -19,6 +19,9 @@
 				<span class="mui-tab-label">搜索</span>
 			</router-link>
 		</nav>
+		<transition>
+			<router-view></router-view>
+		</transition>
     </div>
 </template>
 <script>
@@ -26,8 +29,25 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+	.app_container{
+		padding-top: 40px;
+		overflow-x: hidden;
+	}
     h1{
         color: red;
-    } 
+	} 
+	.v-enter{
+		opacity: 0;
+		transform: translateX(100%)
+	}
+	.v-leave-to{
+		opacity: 0;
+		transform: translateX(-100%);
+		position: absolute;
+	}
+	.v-enter-active,
+	.v-leave-active{
+		transition: all 0.5s ease;
+	}
 </style>
 
