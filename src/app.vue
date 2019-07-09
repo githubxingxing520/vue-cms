@@ -1,6 +1,6 @@
 <template>
     <div class='app_container'>
-        <mt-header fixed title="固定在顶部"></mt-header>
+        <mt-header fixed title="vue-demo"></mt-header>
         <nav class="mui-bar mui-bar-tab">
 			<router-link class="mui-tab-item" to='/home'>
 				<span class="mui-icon mui-icon-home"></span>
@@ -31,6 +31,7 @@ export default {
 <style lang="less" scoped>
 	.app_container{
 		padding-top: 40px;
+		padding-bottom: 50px;
 		overflow-x: hidden;
 	}
     h1{
