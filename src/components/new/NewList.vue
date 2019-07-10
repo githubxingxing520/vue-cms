@@ -1,8 +1,8 @@
-<template>
+router-link<template>
     <div id="new_list_container">
         <ul class="mui-table-view">
 				<li class="mui-table-view-cell mui-media" v-for="item in newList" :key="item.id">
-					<a href="javascript:;">
+					<router-link :to="'/home/newinfo/'+item.id">
 						<img class="mui-media-object mui-pull-left" :src="item.img_url">
 						<div class="mui-media-body">
 							<h1>{{item.title}}</h1>
@@ -11,7 +11,7 @@
                                 <span>点击：{{item.click}}次</span>
                             </p>
 						</div>
-					</a>
+					</router-link>
 				</li>
 			</ul>
     </div>

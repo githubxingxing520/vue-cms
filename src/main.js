@@ -13,10 +13,11 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 import router from './router.js'
 // 按需导入mint-ui组件
-import {Toast, Header,Swipe, SwipeItem} from 'mint-ui'
+import {Toast, Header,Swipe, SwipeItem,Button} from 'mint-ui'
 Vue.component(Header.name,Header)
 Vue.component(Swipe.name,Swipe)
 Vue.component(SwipeItem.name,SwipeItem)
+Vue.component(Button.name,Button)
 // 导入mint-ui样式文件
 import '../node_modules/mint-ui/lib/style.css'
 // 导入mui样式文件
