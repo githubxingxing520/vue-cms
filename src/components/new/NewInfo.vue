@@ -14,6 +14,7 @@
 </template>
 <script>
 import Comment from '../subcomponent/Comment.vue'
+import {Toast} from 'mint-ui'
 export default {
   data() {
     return {
@@ -36,7 +37,8 @@ export default {
       }
   },
   components: {
-      "comment":Comment
+      "comment":Comment,
+      Toast
   }
 };
 </script>

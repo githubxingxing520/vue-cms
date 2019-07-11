@@ -2,8 +2,8 @@
     <div id="comment_container">
         <h3>发表评论</h3>
         <hr>
-        <textarea name="" id="" placeholder="请输入评论内容（120字以内）" maxlength="120"></textarea>
-        <mt-button type='primary' size='large'>发表评论</mt-button>
+        <textarea name="" id="" placeholder="请输入评论内容（120字以内）" maxlength="120" v-model="msg"></textarea>
+        <mt-button type='primary' size='large' @click="postComment">发表评论</mt-button>
         <div class="cmt_list">
             <div class="cmt_item" v-for="(item,i) in commentList">
                 <p class="cmt_title">第{{i+1}}楼&nbsp;&nbsp;用户：{{item.user_name}}&nbsp;&nbsp;发表时间：{{item.add_time | dateFormat}}</p>
@@ -14,14 +14,19 @@
     </div>
 </template>
 <script>
+import {Toast} from 'mint-ui'
 export default {
     data(){
         return{
             pageIndex:1,
-            commentList:[]
+            commentList:[],
+            msg:''
         }
     },
     props:["id"],
+    components:{
+        Toast
+    },
     created () {
         this.getComments()
     },
@@ -38,6 +43,26 @@ export default {
         getMore(){
             this.pageIndex++
             this.getComments()
+        },
+        postComment(){
+            let msg = this.msg.trim()
+            if(msg.length==0){
+                Toast("评论内容不能为空")
+                return 
+            }
+             this.$http.post('api/postcomment/'+this.$route.params.id,{content:msg}).then(res=>{
+                if(res.body.status==0){
+                    let data = {
+                        user_name:'匿名用户',
+                        add_time: Date.now(),
+                        content:msg
+                    }
+                    this.commentList.unshift(data)
+                    this.msg =""
+                }else{
+                    Toast("发表失败")
+                }
+            })
         }
     }
 }

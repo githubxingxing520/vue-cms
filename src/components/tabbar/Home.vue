@@ -46,6 +46,7 @@
   </div>
 </template>
 <script>
+import {Toast} from 'mint-ui'
 export default {
   data() {
     return {
@@ -54,6 +55,9 @@ export default {
   },
   created() {
     this.getLunBoTu();
+  },
+  components: {
+    Toast
   },
   methods: {
     getLunBoTu() {
