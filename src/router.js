@@ -5,6 +5,7 @@ import Shopcar from './components/tabbar/Shopcar.vue'
 import Search from './components/tabbar/Search.vue'
 import NewList from './components/new/NewList.vue'
 import NewInfo from './components/new/NewInfo.vue'
+import PhotoList from './components/photo/PhotoList.vue'
 var router = new VueRouter({
     routes:[
         // 路由匹配规则
@@ -12,6 +13,7 @@ var router = new VueRouter({
         {path:'/home',component:Home},
         {path:'/home/newlist',component:NewList},
         { path: '/home/newinfo/:id', component: NewInfo },
+        { path: '/home/photolist', component: PhotoList },
         {path:'/member',component:Member},
         {path:'/shopcar',component:Shopcar},
         {path:'/search',component:Search}

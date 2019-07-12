@@ -13,7 +13,7 @@
         </router-link>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <router-link to=''>
+        <router-link to='/home/photolist'>
           <img src="../../image/menu2.png" alt="图片分享" />
           <div class="mui-media-body">图片分享</div>
         </router-link>
