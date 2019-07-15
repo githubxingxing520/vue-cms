@@ -34,9 +34,6 @@ export default {
 		padding-bottom: 50px;
 		overflow-x: hidden;
 	}
-    h1{
-        color: red;
-	} 
 	.v-enter{
 		opacity: 0;
 		transform: translateX(100%)
