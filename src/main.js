@@ -29,6 +29,9 @@ import '../node_modules/mint-ui/lib/style.css'
 import './lib/mui/dist/css/mui.min.css'
 // 导入mui扩展图标样式文件
 import './lib/mui/dist/css/icons-extra.css'
+//导入图片预览插件
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
 // 定义全局过滤器：格式化时间
 import moment from 'moment'
 Vue.filter("dateFormat",function(datestr,pattern='YYYY-MM-DD HH:mm:ss'){
