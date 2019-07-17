@@ -8,6 +8,7 @@ import NewInfo from './components/new/NewInfo.vue'
 import PhotoList from './components/photo/PhotoList.vue'
 import PhotoInfo from './components/photo/PhotoInfo.vue'
 import GoodsList from './components/goods/GoodsList.vue'
+import GoodsInfo from './components/goods/GoodsInfo.vue'
 var router = new VueRouter({
     routes:[
         // 路由匹配规则
@@ -18,6 +19,7 @@ var router = new VueRouter({
         { path: '/home/photolist', component: PhotoList },
         { path: '/home/photoinfo/:id', component: PhotoInfo},
         { path: '/home/goodslist', component: GoodsList },
+        { path: '/home/goodsinfo/:id', component: GoodsInfo },
         {path:'/member',component:Member},
         {path:'/shopcar',component:Shopcar},
         {path:'/search',component:Search}
