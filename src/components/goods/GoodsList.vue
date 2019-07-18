@@ -1,6 +1,6 @@
 <template>
   <div id="goods_list_container">
-    <router-link class="goods_item" v-for="item in goodsList" :key="item.add_time" :to="'/home/goodsinfo/'+item.id">
+    <router-link class="goods_item" v-for="item in goodsList" :key="item.add_time" :to="'/home/goodsinfo/'+item.id" tag="div">
       <img v-lazy='item.img_url' />
       <h3 class="title">{{item.title}}</h3>
       <div class="info">

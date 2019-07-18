@@ -1,10 +1,6 @@
 <template>
   <div class="home_container">
-    <mt-swipe :auto="4000">
-      <mt-swipe-item v-for="item in lunbotuList" :key="item.id">
-        <img :src="item.img" alt />
-      </mt-swipe-item>
-    </mt-swipe>
+    <swiper :lunbotuList='lunbotuList' :isfull='true'></swiper>
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <router-link to='/home/newlist'>
@@ -47,6 +43,7 @@
 </template>
 <script>
 import {Toast} from 'mint-ui'
+import swiper from '../subcomponent/Swiper.vue'
 export default {
   data() {
     return {
@@ -57,7 +54,8 @@ export default {
     this.getLunBoTu();
   },
   components: {
-    Toast
+    Toast,
+    swiper
   },
   methods: {
     getLunBoTu() {
@@ -75,24 +73,6 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.mint-swipe {
-  height: 200px;
-  .mint-swipe-item {
-    &:nth-child(1) {
-      background-color: red;
-    }
-    &:nth-child(2) {
-      background-color: yellow;
-    }
-    &:nth-child(3) {
-      background-color: orange;
-    }
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
 .mui-grid-view.mui-grid-9 {
   background-color: #ffffff;
   border: none;
