@@ -1,7 +1,7 @@
 <template>
   <div id="goods_info_container">
     <transition @before-enter='beforeEnter' @enter='enter' @after-enter='afterEnter'>
-      <div class="ball" v-show="flag"></div>
+      <div class="ball" v-show="flag" ref="ball"></div>
     </transition>
     <div class="mui-card">
       <div class="mui-card-content">
@@ -16,7 +16,7 @@
             <span class="old">市场价：￥{{goodsInfo.market_price}}</span>
             <span class="now">销售价：￥{{goodsInfo.sell_price}}</span>
           </p>
-          <p>购买数量：<numberbox></numberbox></p>
+          <p>购买数量：<numberbox @getCount='getSelectCount' :max='goodsInfo.stock_quantity'></numberbox></p>
           <div>
             <mt-button type='primary' size='small'>立即购买</mt-button>
             <mt-button type='danger' size='small' @click="flag=!flag">加入购物车</mt-button>
@@ -64,13 +64,19 @@ export default {
       beforeEnter(el){
         el.style.transform = "translate(0,0)"
       },
-      enter(el){
+      enter(el,done){
         el.offsetWidth
-        el.style.transform = "translate(150px,450px)"
-        el.style.transition = "all 1s ease"
+        const ballPosition = this.$refs.ball.getBoundingClientRect()  //拿到小球位置
+        const carPosition = document.getElementById("badge").getBoundingClientRect() //拿到购物车位置
+        let x = carPosition.left - ballPosition.left
+        let y = carPosition.top - ballPosition.top
+        
+        el.style.transform = `translate(${x}px,${y}px)`
+        el.style.transition = "all 0.8s cubic-bezier(.4,-0.21,1,.61)"
+        done()
       },
       afterEnter(el){
-
+        this.flag = !this.flag
       },
       getLunBoTu(){
           this.$http.get('api/getthumimages/'+this.id).then(res=>{
@@ -102,6 +108,11 @@ export default {
       goComment(id){
         //点击去商品评论页
         this.$router.push({name:'goodscomment',params:{id}})
+      },
+      getSelectCount(count){
+        //获取选择的商品数量
+        console.log("子组件选择的值：",count)
+        this.selectCount = count
       }
   }
 };

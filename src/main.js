@@ -3,6 +3,9 @@ import Vue from 'vue'
 // 导入vue-resource模块
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
+//安装vuex模块
+import Vuex from 'vuex'
+Vue.use(Vuex)
 // 配置接口根域名
 Vue.http.options.root = 'http://www.liulongbin.top:3005/';
 // 配置请求头
