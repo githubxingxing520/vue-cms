@@ -19,7 +19,7 @@
           <p>购买数量：<numberbox @getCount='getSelectCount' :max='goodsInfo.stock_quantity'></numberbox></p>
           <div>
             <mt-button type='primary' size='small'>立即购买</mt-button>
-            <mt-button type='danger' size='small' @click="flag=!flag">加入购物车</mt-button>
+            <mt-button type='danger' size='small' @click="addToShopCar">加入购物车</mt-button>
           </div>
         </div>
       </div>
@@ -49,6 +49,7 @@ export default {
         id:this.$route.params.id,
         lunBoTuList:[],
         goodsInfo:{},
+        selectCount:1,
         flag:false
     };
   },
@@ -113,6 +114,17 @@ export default {
         //获取选择的商品数量
         console.log("子组件选择的值：",count)
         this.selectCount = count
+      },
+      addToShopCar(){
+        //添加到购物车
+        this.flag = !this.flag
+        let goods = {
+          id:this.id,
+          count:this.selectCount,
+          price:this.goodsInfo.sell_price,
+          selected:true
+        }
+        this.$store.commit('addGoods',goods)
       }
   }
 };
