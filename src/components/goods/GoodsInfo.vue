@@ -124,7 +124,7 @@ export default {
           price:this.goodsInfo.sell_price,
           selected:true
         }
-        this.$store.commit('addGoods',goods)
+        this.$store.commit('addToCar',goods)
       }
   }
 };

@@ -1,16 +1,16 @@
 <template>
   <div id="shopcar_container">
-    <div class="mui-card" v-for="item in goodsList" :key="item.id">
+    <div class="mui-card" v-for="(item,i) in goodsList" :key="item.id">
       <div class="mui-card-content">
         <div class="mui-card-content-inner">
-            <mt-switch></mt-switch>
+            <mt-switch v-model="$store.getters.getGoodsSelected[item.id]" @change="selectedChange(item.id,$store.getters.getGoodsSelected[item.id])"></mt-switch>
             <img :src="item.thumb_path" alt="">
             <div class="info">
                 <h3 class="title">{{item.title}}</h3>
                 <p>
                     <span class="price">￥{{item.sell_price}}</span>
-                    <numberbox :value='$store.getters.getGoodsCount[item.id]'></numberbox>
-                    <a href="#">删除</a>
+                    <numberbox :value='$store.getters.getGoodsCount[item.id]' :goodsId="item.id"></numberbox>
+                    <a href="#" @click.prevent="removeGoods(item.id,i)">删除</a>
                 </p>
             </div>
         </div>
@@ -18,8 +18,12 @@
     </div>
      <div class="mui-card">
       <div class="mui-card-content">
-        <div class="mui-card-content-inner">
-            
+        <div class="mui-card-content-inner jiesuan">
+            <div class="left">
+                <p>总计（不含运费）</p>
+                <p>已勾选商品<span class="red">{{$store.getters.getGoodsCountAndAmount.count}}</span>件，总计<span class="red">￥{{$store.getters.getGoodsCountAndAmount.amount}}</span></p>
+            </div>
+            <mt-button type='danger'>去结算</mt-button>
         </div>
       </div>
     </div>
@@ -49,6 +53,15 @@ export default {
                     this.goodsList = res.body.message
                 }else{}
             })
+        },
+        removeGoods(id,index){
+            //删除购物车商品
+            this.goodsList.splice(index,1)  //根据下标删除页面渲染列表里面的数据
+            this.$store.commit("removeGoods",id) //根据Id删除store里面的数据
+        },
+        selectedChange(id,selected){
+            //切换switch状态
+            this.$store.commit("updateGoodsSelected",{id:id,selected:selected})
         }
     },
 };
@@ -80,6 +93,14 @@ export default {
       }
       }
   }
+  }
+  .jiesuan{
+      justify-content: space-between;
+      .red{
+          color: red;
+          font-weight: bold;
+          font-size: 16px;
+      }
   }
   
 }
